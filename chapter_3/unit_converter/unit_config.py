@@ -1,5 +1,5 @@
-from .quantity import Quantity
-from .unit import Unit
+from quantity import Quantity
+from unit import Unit
 
 unit_config = {
     "Mass": Quantity(

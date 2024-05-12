@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict
 
-from .unit import Unit
+from unit import Unit
 
 
 @dataclass
