@@ -1,4 +1,8 @@
-from .unit_config import unit_config
+from unit_config import unit_config
+
+
+def list_quantities():
+    return list(unit_config.keys())
 
 
 def convert_value(quantity_name, from_unit_name, to_unit_name, value):
@@ -14,12 +18,7 @@ def convert_value(quantity_name, from_unit_name, to_unit_name, value):
         }
 
     except KeyError:
-        if quantity_name not in unit_config:
-            return {"code": 1, "error": f"Unknown quantity: {quantity_name}"}
-        if from_unit_name not in quantity.units:
-            return {"code": 2, "error": f"Unknown unit: {from_unit_name}"}
-        if to_unit_name not in quantity.units:
-            return {"code": 3, "error": f"Unknown unit: {to_unit_name}"}
+        _handle_errors(quantity_name, from_unit_name, to_unit_name)
 
 
 def convert_value_to_all_units(quantity_name, from_unit_name, value):
@@ -39,13 +38,20 @@ def convert_value_to_all_units(quantity_name, from_unit_name, value):
         }
 
     except KeyError:
-        if quantity_name not in unit_config:
-            return {"code": 1, "error": f"Unknown quantity: {quantity_name}"}
-        if from_unit_name not in quantity.units:
-            return {"code": 2, "error": f"Unknown unit: {from_unit_name}"}
+        _handle_errors(quantity_name, from_unit_name, to_unit_name)
 
 
 def _convert_value(from_unit, to_unit, value):
     value_in_std_units = value * from_unit.value_in_standard_units
     value_in_to_unit = value_in_std_units / to_unit.value_in_standard_units
     return value_in_to_unit
+
+
+def _handle_errors(quantity_name, from_unit_name, to_unit_name):
+    if quantity_name is not None and quantity_name not in unit_config:
+        return {"code": 1, "error": f"Unknown quantity: {quantity_name}"}
+    if from_unit_name is not None and from_unit_name not in unit_config[quantity_name].units:
+        return {"code": 2, "error": f"Unknown unit: {from_unit_name}"}
+    if to_unit_name is not None and to_unit_name not in unit_config[quantity_name].units:
+        return {"code": 3, "error": f"Unknown unit: {to_unit_name}"}
+    return {"code": 100, "error": "Unknown error"}
