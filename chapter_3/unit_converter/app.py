@@ -6,7 +6,7 @@ with st.sidebar:
     quantity = st.radio("Select a quantity", list_quantities())
 
 units = list_units(quantity)
-st.title("Unit Converter")
+st.write("# Unit Converter")
 
 value = st.number_input("Value to convert")
 
@@ -21,4 +21,10 @@ convert_button_col, reset_button_col, reverse_button_col = st.columns(3)
 
 if st.button("Convert"):
     result = convert_value(quantity, from_unit, to_unit, value)
-    st.write(f"{value} {from_unit} is equal to {result} {to_unit}")
+    from_display_value = f"{value} {result.from_unit.abbreviation}"
+    to_display_value = f"{result.to_value} {result.to_unit.abbreviation}"
+
+    from_value_col, arrow_col, to_value_col = st.columns(3)
+    from_value_col.metric("From", from_display_value, delta=None)
+    arrow_col.metric("", "→")
+    to_value_col.metric("To", to_display_value, delta=None)
