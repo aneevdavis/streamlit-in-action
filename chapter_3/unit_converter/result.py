@@ -4,7 +4,7 @@ from unit import Unit
 
 
 @dataclass
-class ConversionResult:
+class Result:
     from_unit: Unit
     to_unit: Unit
     from_value: float

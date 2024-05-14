@@ -1,7 +1,7 @@
 from quantity import Quantity
 from unit import Unit
 
-unit_config = {
+unit_config: dict[str, Quantity] = {
     "Mass": Quantity(
         standard_unit="Kilograms",
         units={
