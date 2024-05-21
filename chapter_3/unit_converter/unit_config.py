@@ -1,7 +1,8 @@
 from quantity import Quantity
+from typing import Dict
 from unit import Unit
 
-unit_config: dict[str, Quantity] = {
+unit_config: Dict[str, Quantity] = {
     "Mass": Quantity(
         std_unit="Kilograms",
         units={

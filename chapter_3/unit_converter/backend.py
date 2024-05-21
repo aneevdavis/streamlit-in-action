@@ -1,12 +1,13 @@
 from unit_config import unit_config
 from result import Result
+from typing import List
 
 
-def list_quantities() -> list[str]:
+def list_quantities() -> List[str]:
     return list(unit_config.keys())
 
 
-def list_units(quantity_name) -> list[str]:
+def list_units(quantity_name) -> List[str]:
     return list(unit_config[quantity_name].units.keys())
 
 
