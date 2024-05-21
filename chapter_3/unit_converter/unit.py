@@ -3,5 +3,5 @@ from dataclasses import dataclass
 
 @dataclass
 class Unit:
-    abbreviation: str
-    value_in_standard_units: float
+    abbrev: str
+    value_in_std_units: float
