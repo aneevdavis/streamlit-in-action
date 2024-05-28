@@ -20,8 +20,10 @@ from_unit_col, to_unit_col = st.columns(2)
 from_unit = from_unit_col.selectbox("From", units)
 to_unit = to_unit_col.selectbox("To", units, index=1)
 
-places = st.number_input(
-    "Decimal places to round to", value=2, min_value=0)
+places = None
+if st.checkbox("Round result?", value=False):
+    places = st.number_input(
+        "Decimal places to round to", value=2, min_value=0)
 
 if st.button("Convert"):
     result = convert_value(quantity, from_unit, to_unit, input_num)
