@@ -1,5 +1,6 @@
-from quantity import Quantity
 from typing import Dict
+
+from quantity import Quantity
 from unit import Unit
 
 unit_config: Dict[str, Quantity] = {
@@ -10,6 +11,7 @@ unit_config: Dict[str, Quantity] = {
             "Grams": Unit(abbrev="g", value_in_std_units=0.001),
             "Pounds": Unit(abbrev="lb", value_in_std_units=0.453592),
             "Ounces": Unit(abbrev="oz", value_in_std_units=0.0283495),
+            # Add more units here
         }
     ),
     "Length": Quantity(
@@ -30,4 +32,5 @@ unit_config: Dict[str, Quantity] = {
             "Days": Unit(abbrev="d", value_in_std_units=86400),
         }
     ),
+    # Add more quantities here
 }

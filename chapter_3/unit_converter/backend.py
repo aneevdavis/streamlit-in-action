@@ -20,6 +20,7 @@ def convert_value(
     from_unit = quantity.units[from_unit_name]
     to_unit = quantity.units[to_unit_name]
 
+    # Two-step conversion: from-unit to standard unit, then to to-unit
     value_in_to_units = (value *
                          from_unit.value_in_std_units /
                          to_unit.value_in_std_units)
