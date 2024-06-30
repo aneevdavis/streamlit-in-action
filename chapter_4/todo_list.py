@@ -1,6 +1,6 @@
 import streamlit as st
 
-task_list = []
+task_list = [["Buy groceries", False]]
 
 def add_task(task):
     task_list.append([task, False])
@@ -23,8 +23,8 @@ for idx, [task, is_done] in enumerate(task_list):
     task_col.markdown(task if not is_done else f"~~{task}~~")
 
     change_status_label = "Not done" if is_done else "Done"
-    if change_status_col.button(change_status_label, key=f"toggle_{idx}"):
+    if change_status_col.button(change_status_label):
         toggle_done(idx)
         
-    if delete_col.button("Delete", key=f"delete_{idx}"):
+    if delete_col.button("Delete"):
         delete_task(idx)
