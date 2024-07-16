@@ -13,7 +13,7 @@ def format_value(
 quantity = st.sidebar.radio("Select a quantity", list_quantities())
 
 st.title("Unit Converter")
-input_num = float(st.text_input("Value", value="0"))
+input_num = float(st.text_input("Value to convert", value="0"))
 
 units = list_units(quantity)
 from_unit_col, to_unit_col = st.columns(2)
@@ -30,7 +30,6 @@ from_display = format_value(input_num, result.from_unit.abbrev)
 to_display = format_value(
     result.to_value, result.to_unit.abbrev, places)
 
-from_result_col, to_result_col = st.columns(2)
 from_value_col, to_value_col = st.columns(2)
 from_value_col.metric("From", from_display, delta=None)
 to_value_col.metric("To", to_display, delta=None)
