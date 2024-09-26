@@ -1,5 +1,5 @@
 import streamlit as st
-from backend import convert_value, list_quantities, list_units
+from backend import list_quantities, list_units, convert_value
 
 def format_value(
         value: float,
@@ -20,13 +20,10 @@ from_unit_col, to_unit_col = st.columns(2)
 from_unit = from_unit_col.selectbox("From", units)
 to_unit = to_unit_col.selectbox("To", units, index=1)
 
-places = st.number_input("Decimal places to round to", value=2, min_value=0)
-
 if st.button("Convert"):
     result = convert_value(quantity, from_unit, to_unit, input_num)
-    from_display = format_value(input_num, result.from_unit.abbrev)
-    to_display = format_value(
-        result.to_value, result.to_unit.abbrev, places)
+    from_display = f"{result.from_value} {result.from_unit.abbrev}"
+    to_display = f"{result.to_value} {result.to_unit.abbrev}"
 
     from_value_col, to_value_col = st.columns(2)
     from_value_col.metric("From", from_display, delta=None)
