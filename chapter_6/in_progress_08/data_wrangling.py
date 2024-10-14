@@ -19,7 +19,6 @@ def apply_filters(df, filters):
 def prep_data() -> pd.DataFrame:
   df = clean_column_names(load_data())
   df['Day'] = pd.to_datetime(df['Date'])
-  df['Week'] = df['Day'].dt.to_period('W').dt.to_timestamp()
   return df
 
 def get_data_within_date_range(df, start, end):
