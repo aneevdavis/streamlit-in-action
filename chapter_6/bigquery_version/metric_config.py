@@ -32,3 +32,4 @@ metrics = {
 }
 
 display_metrics = ["Total sales", "Gross margin", "Margin %", "ATV"]
+pie_chart_display_metrics = ["Total sales", "Gross margin"]
