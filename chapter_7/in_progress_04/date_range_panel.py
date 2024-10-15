@@ -1,4 +1,3 @@
-import pandas as pd
 import streamlit as st
 from datetime import date
 
@@ -23,4 +22,4 @@ def date_range_panel():
     end = st.date_input("End date", value=TODAY)
   else:
     start, end = get_named_date_range(main_range)
-  return pd.to_datetime(start), pd.to_datetime(end)
+  return start, end

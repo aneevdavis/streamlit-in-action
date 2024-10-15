@@ -23,7 +23,8 @@ def prep_data() -> pd.DataFrame:
 
 def get_data_within_date_range(df, start, end):
   if start is not None and end is not None:
-    return df[(df['Day'] >= start) & (df['Day'] <= end)]
+    dt_start, dt_end = pd.to_datetime(start), pd.to_datetime(end)
+    return df[(df['Day'] >= dt_start) & (df['Day'] <= dt_end)]
   return df
 
 def get_filtered_data_within_date_range(df, start, end, filters):

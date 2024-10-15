@@ -16,14 +16,13 @@ def get_named_date_range(range_name):
   }
   return start_dates[range_name], TODAY
 
-def main_date_range():
-  main_range = st.selectbox("Date range", named_ranges + ["Custom"])
-  if main_range == "Custom":
+def main_date_range(range_name):
+  if range_name == "Custom":
     start = st.date_input("Start date", value=ONE_MONTH_AGO)
     end = st.date_input("End date", value=TODAY)
   else:
-    start, end = get_named_date_range(main_range)
-  return pd.to_datetime(start), pd.to_datetime(end)
+    start, end = get_named_date_range(range_name)
+  return start, end
 
 def compare_date_range():
   compare_start = st.date_input("Compare start date")
@@ -31,6 +30,7 @@ def compare_date_range():
   return pd.to_datetime(compare_start), pd.to_datetime(compare_end)
 
 def date_range_panel():
-  start, end = main_date_range()
+  range_name = st.selectbox("Date range", named_ranges + ["Custom"])
+  start, end = main_date_range(range_name)
   compare_start, compare_end = compare_date_range()
   return start, end, compare_start, compare_end
