@@ -1,7 +1,7 @@
 import streamlit as st
 
 @st.dialog("Drilldown", width="large")
-def drilldown(main_df, compare_df, metric):
+def drilldown(main_df, compare_df):
   main_tab, compare_tab = st.tabs(["Main", "Compare"])
   with main_tab:
     st.dataframe(main_df, use_container_width=True, hide_index=True)

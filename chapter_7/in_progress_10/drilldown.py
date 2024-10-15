@@ -2,9 +2,21 @@ import pandas as pd
 import streamlit as st
 from dimension_config import drilldown_dims
 from metric_config import metrics
+from data_wrangling import get_unique_values, apply_filters
 
 def drilldown_dimensions():
   return st.multiselect("Drilldown fields", drilldown_dims)
+
+def drilldown_filters(df, dimensions):
+  filters = {}
+  if dimensions:
+    filter_cols = st.columns(len(dimensions))
+    for idx, dim in enumerate(dimensions):
+      with filter_cols[idx]:
+        values = get_unique_values(df, dim)
+        selected = st.selectbox(dim, ["All"] + values)
+        filters[dim] = [selected] if selected != "All" else []
+  return filters
 
 def get_metric_cols(df):
   metrics_dict = {met: metric.func(df) for met, metric in metrics.items()}
@@ -17,8 +29,11 @@ def get_aggregate_metrics(df, dimensions):
   metric_cols = get_metric_cols(df)
   return pd.DataFrame(metric_cols).T
 
-def get_drilldown_table(df, dimensions):
-  aggregated = get_aggregate_metrics(df, dimensions)
+def get_drilldown_table(df, dimensions, filters):
+  filtered = apply_filters(df, filters)
+  if filtered.empty:
+    return None
+  aggregated = get_aggregate_metrics(filtered, dimensions)
   return aggregated
 
 def display_drilldown_table(df):
@@ -30,8 +45,10 @@ def display_drilldown_table(df):
 @st.dialog("Drilldown", width="large")
 def drilldown(main_df, compare_df):
   dimensions = drilldown_dimensions()
-  main_data = get_drilldown_table(main_df, dimensions)
-  compare_data = get_drilldown_table(compare_df, dimensions)
+  filters = drilldown_filters(main_df, dimensions)
+
+  main_data = get_drilldown_table(main_df, dimensions, filters)
+  compare_data = get_drilldown_table(compare_df, dimensions, filters)
 
   main_tab, compare_tab = st.tabs(["Main", "Compare"])
   with main_tab:

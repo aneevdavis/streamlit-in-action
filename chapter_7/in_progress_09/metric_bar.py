@@ -37,5 +37,3 @@ def metric_bar(main_df, compare_df):
         with c2:
           st.metric(
             metric.title, formatted_value, formatted_delta, "normal")
-          if st.button("Drilldown", key=metric_name):
-            drilldown(main_df, compare_df, metric_name)
