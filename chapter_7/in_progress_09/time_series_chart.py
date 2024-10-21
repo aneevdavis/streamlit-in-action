@@ -34,7 +34,7 @@ def time_series_chart(df):
     grain_col, split_col = st.columns([2, 1])
     grain = grain_col.select_slider("Time grain", grain_options)
     split_dimension = split_col.selectbox(
-      "Group by", ["None"] + time_chart_dims, key="ts_split")
+      "Group by", ["None"] + time_chart_dims)
     splits = [split_dimension] if split_dimension != "None" else []
     chart_tabs = st.tabs(display_metrics)
     for idx, met in enumerate(display_metrics):

@@ -1,9 +1,9 @@
 import pandas as pd
 import streamlit as st
-from datetime import date
+from datetime import date, timedelta
 
 TODAY = date.fromisoformat("2024-08-31") # Hardcode to last date in dataset
-ONE_MONTH_AGO = TODAY.replace(month=TODAY.month - 1)
+THIRTY_DAYS_AGO = TODAY - timedelta(days=30)
 
 named_ranges = ["This month", "This quarter", "This year"]
 
@@ -11,7 +11,7 @@ def get_named_date_range(range_name):
   start_dates = {
     "This month": TODAY.replace(day=1),
     "This quarter": TODAY.replace(
-      day=1, month=TODAY.month - TODAY.month % 3),
+      day=1, month=TODAY.month - TODAY.month % 3 + 1),
     "This year": TODAY.replace(day=1, month=1),
   }
   return start_dates[range_name], TODAY
@@ -28,7 +28,7 @@ def get_prev_period(start, end, comparison):
 def main_date_range(range_name):
   if range_name == "Custom":
     start = st.date_input(
-          "Start date", value=ONE_MONTH_AGO, key="w:main_start")
+          "Start date", value=THIRTY_DAYS_AGO, key="w:main_start")
     end = st.date_input("End date", value=TODAY, key="w:main_end")
   else:
     start, end = get_named_date_range(range_name)

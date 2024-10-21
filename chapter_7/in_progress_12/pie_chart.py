@@ -14,8 +14,7 @@ def get_pie_chart(df, metric, dimension):
 
 def pie_chart(df):
   with st.container(border=True):
-    split_dimension = st.selectbox(
-      "Group by", pie_chart_dims, key="pie_split")
+    split_dimension = st.selectbox("Group by", pie_chart_dims)
     metric_tabs = st.tabs(pie_chart_display_metrics)
     for idx, met in enumerate(pie_chart_display_metrics):
       with metric_tabs[idx]:
