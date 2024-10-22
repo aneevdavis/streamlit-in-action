@@ -1,4 +1,3 @@
-import pandas as pd
 import streamlit as st
 from datetime import date, timedelta
 
@@ -16,21 +15,21 @@ def get_named_date_range(range_name):
   }
   return start_dates[range_name], TODAY
 
-def main_date_range(range_name):
-  if range_name == "Custom":
+def main_date_range():
+  main_range = st.selectbox("Date range", named_ranges + ["Custom"])
+  if main_range == "Custom":
     start = st.date_input("Start date", value=THIRTY_DAYS_AGO)
     end = st.date_input("End date", value=TODAY)
   else:
-    start, end = get_named_date_range(range_name)
+    start, end = get_named_date_range(main_range)
   return start, end
 
 def compare_date_range():
   compare_start = st.date_input("Compare start date")
   compare_end = st.date_input("Compare end date")
-  return pd.to_datetime(compare_start), pd.to_datetime(compare_end)
+  return compare_start, compare_end
 
 def date_range_panel():
-  range_name = st.selectbox("Date range", named_ranges + ["Custom"])
-  start, end = main_date_range(range_name)
+  start, end = main_date_range()
   compare_start, compare_end = compare_date_range()
   return start, end, compare_start, compare_end

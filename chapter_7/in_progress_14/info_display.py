@@ -2,8 +2,8 @@ import streamlit as st
 
 def info_display(start, end, compare_start, compare_end):
   display_info = [
-    f"**Main date range**:  \n{start.date()} to {end.date()}",
-    f"**Compare to**:  \n{compare_start.date()} to {compare_end.date()}",
+    f"**Main date range**:  \n{start} to {end}",
+    f"**Compare to**:  \n{compare_start} to {compare_end}",
     f"**Filters**:  \n{get_filter_info()}"
   ]
   st.info("\n\n".join(display_info))

@@ -5,9 +5,6 @@ from formatting import format_metric
 def get_metric(df, metric):
   return metric.func(df)
 
-def get_formatted_value(value, metric):
-  return format_metric(value, metric.type)
-
 def get_delta(value, compare_df, metric):
   delta = None
   if compare_df is not None:
@@ -30,7 +27,7 @@ def metric_bar(main_df, compare_df):
       metric = metrics[metric_name]
       with metric_cols[idx]:
         value = get_metric(main_df, metric)
-        formatted_value = get_formatted_value(value, metric)
+        formatted_value = format_metric(value, metric.type)
         formatted_delta = get_formatted_delta(value, compare_df, metric)
         c1, c2, c3 = st.columns([1, 3, 1])
         with c2:
