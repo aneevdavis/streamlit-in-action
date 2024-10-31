@@ -31,8 +31,9 @@ def main_date_range():
   main_range = st.selectbox(
               "Date range", named_ranges + ["Custom"], key="w:main_range")
   if main_range == "Custom":
-    start = st.date_input("Start date", key="w:main_start")
-    end = st.date_input("End date", key="w:main_end")
+    start = st.date_input(
+            "Start date", value=THIRTY_DAYS_AGO, key="w:main_start")
+    end = st.date_input("End date", value=TODAY, key="w:main_end")
   else:
     start, end = get_named_date_range(main_range)
   return start, end

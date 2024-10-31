@@ -6,12 +6,16 @@ from metric_bar import metric_bar
 from time_series_chart import time_series_chart
 from pie_chart import pie_chart
 from drilldown import drilldown
+from query_params import set_widget_defaults, set_params
+from info_display import info_display
 
 st.set_page_config(layout='wide')
+set_widget_defaults()
 
 with st.sidebar:
   dd_button_container = st.container()
   start, end, compare_start, compare_end = date_range_panel()
+  info_display(start, end, compare_start, compare_end)
 
 data = prep_data()
 filters = filter_panel(data)
@@ -30,3 +34,5 @@ else:
     time_series_chart(main_df)
   with pie_chart_col:
     pie_chart(main_df)
+
+set_params()

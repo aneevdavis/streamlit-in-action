@@ -7,7 +7,6 @@ from time_series_chart import time_series_chart
 from pie_chart import pie_chart
 from drilldown import drilldown
 from query_params import set_widget_defaults, set_params
-from info_display import info_display
 
 st.set_page_config(layout='wide')
 set_widget_defaults()
@@ -15,7 +14,6 @@ set_widget_defaults()
 with st.sidebar:
   dd_button_container = st.container()
   start, end, compare_start, compare_end = date_range_panel()
-  info_display(start, end, compare_start, compare_end)
 
 data = prep_data()
 filters = filter_panel(data)
@@ -26,9 +24,9 @@ if main_df.empty:
 else:
   compare_df = get_filtered_data_within_date_range(
                   data, compare_start, compare_end, filters)
-  metric_bar(main_df, compare_df)
   if dd_button_container.button("Drilldown", use_container_width=True):
     drilldown(main_df, compare_df)
+  metric_bar(main_df, compare_df)
   time_series_col, pie_chart_col = st.columns(2)
   with time_series_col:
     time_series_chart(main_df)

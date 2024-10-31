@@ -44,7 +44,7 @@ def style_total_row(df):
   def get_style(row):
     first_col = row.index[0]
     return [
-      'background-color: #d9d9d9' if row[first_col] == 'Total' else ''
+      'background-color: lightgray' if row[first_col] == 'Total' else ''
       for _ in row
     ]
   return df.style.apply(get_style, axis=1)
