@@ -7,4 +7,4 @@ SALES_DATA_PATH = BASE_DIR / "sales_data.csv"
 
 @st.cache_data(show_spinner="Reading sales data...", ttl="1d")
 def load_data():
-  return pd.read_csv(SALES_DATA_PATH, dtype_backend='pyarrow')
+  return pd.read_csv(SALES_DATA_PATH)
