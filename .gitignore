@@ -1,5 +1,5 @@
 # Python
 .idea/
 **/__pycache__/
-chapter_5/.streamlit/
+**/.streamlit/
 **/.DS_Store
