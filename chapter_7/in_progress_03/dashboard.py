@@ -9,7 +9,7 @@ from pie_chart import pie_chart
 st.set_page_config(layout='wide')
 
 with st.sidebar:
-  start, end = date_range_panel()
+  start, end, compare_start, compare_end = date_range_panel()
 
 data = prep_data()
 filters = filter_panel(data)

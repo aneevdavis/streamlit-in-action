@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 from metric_config import metrics
-from formatting import format_dataframe
 
 def drilldown_dimensions():
   return st.multiselect(
@@ -30,21 +29,10 @@ def add_total_row(df, all_df, dimensions):
   total_row = pd.DataFrame({'': 'Total', **total_metrics}, index=[0])
   return total_row
 
-def style_total_row(df):
-  def get_style(row):
-    first_col = row.index[0]
-    return [
-      'background-color: lightgray' if row[first_col] == 'Total' else ''
-      for _ in row
-    ]
-  return df.style.apply(get_style, axis=1)
-
 def get_drilldown_table(df, dimensions):
   aggregated = get_aggregate_metrics(df, dimensions)
   with_total = add_total_row(aggregated, df, dimensions)
-  formatted = format_dataframe(with_total, metrics)
-  styled = style_total_row(formatted)
-  return styled
+  return with_total
 
 def display_drilldown_table(df):
   if df is None:

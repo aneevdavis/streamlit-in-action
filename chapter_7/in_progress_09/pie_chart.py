@@ -2,7 +2,6 @@ import plotly.graph_objects as go
 import streamlit as st
 from data_wrangling import get_metric_grouped_by_dimension
 from metric_config import metrics, pie_chart_display_metrics
-from dimension_config import pie_chart_dims
 
 def get_pie_chart(df, metric, dimension):
   data = get_metric_grouped_by_dimension(df, metric, dimension)
@@ -14,7 +13,12 @@ def get_pie_chart(df, metric, dimension):
 
 def pie_chart(df):
   with st.container(border=True):
-    split_dimension = st.selectbox("Group by", pie_chart_dims)
+    split_dimension = st.selectbox(
+      "Group by",
+      ["Age group", "Gender", "State", "Category",
+       "Segment", "Product name"],
+      key="w:pie_split"
+    )
     metric_tabs = st.tabs(pie_chart_display_metrics)
     for idx, met in enumerate(pie_chart_display_metrics):
       with metric_tabs[idx]:

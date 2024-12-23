@@ -6,8 +6,10 @@ from metric_bar import metric_bar
 from time_series_chart import time_series_chart
 from pie_chart import pie_chart
 from drilldown import drilldown
+from query_params import set_widget_defaults, set_params
 
 st.set_page_config(layout='wide')
+set_widget_defaults()
 
 with st.sidebar:
   dd_button_container = st.container()
@@ -30,3 +32,5 @@ else:
     time_series_chart(main_df)
   with pie_chart_col:
     pie_chart(main_df)
+
+set_params()

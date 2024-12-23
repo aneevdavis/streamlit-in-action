@@ -34,10 +34,10 @@ def get_filtered_data_within_date_range(df, start, end, filters):
   df_within_range = get_data_within_date_range(df.copy(), start, end)
   return apply_filters(df_within_range, filters)
 
-def get_metric_time_series(df, metric, grain, splits):
-  grouped = df.groupby(splits + [grain])
+def get_metric_time_series(df, metric, grain):
+  grouped = df.groupby(grain)
   data = grouped.apply(metric.func, include_groups=False).reset_index()
-  data.columns = splits + [grain, 'Value']
+  data.columns = [grain, 'Value']
   return data
 
 def get_metric_grouped_by_dimension(df, metric, dimension):

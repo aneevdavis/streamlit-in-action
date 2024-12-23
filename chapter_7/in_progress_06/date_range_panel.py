@@ -1,35 +1,26 @@
+import pandas as pd
 import streamlit as st
 from datetime import date, timedelta
 
-TODAY = date.fromisoformat("2024-08-31") # Hardcode to last date in dataset
-THIRTY_DAYS_AGO = TODAY - timedelta(days=30)
+# Hardcode this to the last date in dataset to ensure reproducibility
+LATEST_DATE = date.fromisoformat("2024-08-31")
+THIRTY_DAYS_AGO = LATEST_DATE - timedelta(days=30)
 
-named_ranges = ["This month", "This quarter", "This year"]
-
-def get_named_date_range(range_name):
-  start_dates = {
-    "This month": TODAY.replace(day=1),
-    "This quarter": TODAY.replace(
-      day=1, month=TODAY.month - TODAY.month % 3),
-    "This year": TODAY.replace(day=1, month=1),
+def get_compare_range(start, end, comparison):
+  offsets = {
+    "MoM": pd.DateOffset(months=1),
+    "QoQ": pd.DateOffset(months=3),
+    "YoY": pd.DateOffset(years=1),
+    "Previous period": pd.DateOffset((end - start).days + 1)
   }
-  return start_dates[range_name], TODAY
-
-def main_date_range():
-  main_range = st.selectbox("Date range", named_ranges + ["Custom"])
-  if main_range == "Custom":
-    start = st.date_input("Start date", value=THIRTY_DAYS_AGO)
-    end = st.date_input("End date", value=TODAY)
-  else:
-    start, end = get_named_date_range(main_range)
-  return start, end
-
-def compare_date_range():
-  compare_start = st.date_input("Compare start date")
-  compare_end = st.date_input("Compare end date")
-  return compare_start, compare_end
+  offset = offsets[comparison]
+  return (start - offset).date(), (end - offset).date()
 
 def date_range_panel():
-  start, end = main_date_range()
-  compare_start, compare_end = compare_date_range()
+  start = st.date_input("Start date", value=THIRTY_DAYS_AGO)
+  end = st.date_input("End date", value=LATEST_DATE)
+  comparison = st.selectbox(
+    "Compare to", ["MoM", "QoQ", "YoY", "Previous period"])
+  compare_start, compare_end = get_compare_range(start, end, comparison)
+  st.info(f"Comparing with:  \n{compare_start} - {compare_end}")
   return start, end, compare_start, compare_end

@@ -1,6 +1,8 @@
 import streamlit as st
 from data_wrangling import get_unique_values, apply_filters
-from dimension_config import filter_dims
+
+filter_dims = ["Age group", "Gender", "Category", "Segment",
+               "Product name", "State"]
 
 def filter_panel(df):
   filters = {}

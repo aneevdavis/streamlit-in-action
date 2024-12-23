@@ -1,7 +1,6 @@
 import streamlit as st
 from metric_config import metrics, display_metrics
 from formatting import format_metric
-from drilldown import drilldown
 
 def get_metric(df, metric):
   return metric.func(df)

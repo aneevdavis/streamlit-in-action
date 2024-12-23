@@ -4,4 +4,3 @@ key_dimensions = [
 filter_dims = key_dimensions
 pie_chart_dims = key_dimensions
 time_chart_dims = key_dimensions
-drilldown_dims = key_dimensions
