@@ -1,0 +1,6 @@
+__pycache__/
+.git/
+.gitignore
+.streamlit/secrets.toml
+.ebextensions/
+.elasticbeanstalk/

@@ -1,0 +1,7 @@
+services:
+  fact-frenzy-app:
+    build: .
+    ports:
+      - "8502:8501"
+    volumes:
+      - ./.streamlit/:/app/.streamlit
