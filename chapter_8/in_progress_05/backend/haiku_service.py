@@ -7,9 +7,9 @@ class HaikuService:
   def create_haiku(self, author, haiku_text):
     query = '''
       INSERT INTO haikus (author, text)
-      VALUES (%s, %s)
+      VALUES (:author, :text)
       RETURNING haiku_id, created_at, author, text
     '''
-    params = (author, haiku_text)
-    results = self.database.execute_query(query, params)
+    params = {'author': author, 'text': haiku_text}
+    results = self.database.execute_query(query, params, write=True)
     return Haiku(*results[0]) if results else None

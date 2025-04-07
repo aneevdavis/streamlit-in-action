@@ -1,7 +1,7 @@
 import streamlit as st
 from backend.hub import Hub
 
-hub = Hub(st.secrets['config'])
+hub = Hub()
 
 with st.container(border=True):
   st.title("Sign up")

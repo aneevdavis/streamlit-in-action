@@ -4,7 +4,7 @@ from backend.haiku_service import HaikuService
 
 
 class Hub:
-  def __init__(self, config):
-    database = Database(config['connection_string'])
+  def __init__(self):
+    database = Database()
     self.user_service = UserService(database)
     self.haiku_service = HaikuService(database)

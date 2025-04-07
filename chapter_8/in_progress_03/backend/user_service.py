@@ -5,8 +5,8 @@ class UserService:
     self.database = database
 
   def get_user(self, username):
-    query = "SELECT username, password_hash FROM users WHERE username = %s"
-    params = (username,)
+    query = "SELECT * FROM users WHERE username = :username"
+    params = {'username': username}
     results = self.database.execute_query(query, params)
     return User(*results[0]) if results else None
 
@@ -15,12 +15,12 @@ class UserService:
     if not existing_user:
       query = '''
         INSERT INTO users (username, password_hash)
-          VALUES (%s, %s)
+          VALUES (:username, :password_hash)
           RETURNING username, password_hash
       '''
       password_hash = User.hash_password(password)
-      params = (username, password_hash)
-      results = self.database.execute_query(query, params)
+      params = {'username': username, 'password_hash': password_hash}
+      results = self.database.execute_query(query, params, write=True)
       return User(*results[0]) if results else None
     return None
 

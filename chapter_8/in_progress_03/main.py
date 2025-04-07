@@ -9,8 +9,7 @@ pages = {
 }
 
 if 'hub' not in st.session_state:
-  config = st.secrets['config']
-  st.session_state.hub = Hub(config)
+  st.session_state.hub = Hub()
 
 page = st.navigation([pages['login'], pages['signup']])
 page.run()

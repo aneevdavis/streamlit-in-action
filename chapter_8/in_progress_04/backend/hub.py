@@ -3,6 +3,6 @@ from backend.user_service import UserService
 
 
 class Hub:
-  def __init__(self, config):
-    database = Database(config['connection_string'])
+  def __init__(self):
+    database = Database()
     self.user_service = UserService(database)
