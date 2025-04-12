@@ -1,0 +1,9 @@
+streamlit==1.40.2
+openai==1.58.1
+langchain-community==0.3.14
+langchain-core==0.3.30
+langchain-openai==0.3.0
+langchain-pinecone==0.2.2
+langgraph==0.2.64
+pinecone==5.4.2
+toml==0.10.2
