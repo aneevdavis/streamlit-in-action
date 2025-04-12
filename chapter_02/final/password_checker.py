@@ -13,10 +13,8 @@ conditions = {
         lambda pw: any(char.isdigit() for char in pw),
 }
 
-
 def get_password_properties(password):
     return {cond: check(password) for cond, check in conditions.items()}
-
 
 st.title("Password Checker")
 password_input = st.text_input("Enter your password", type="password")
