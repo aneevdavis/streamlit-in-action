@@ -17,7 +17,7 @@ def get_password_properties(password):
 st.title("Password Checker")
 password_input = st.text_input("Enter your password", type="password")
 
-if st.button("Check password!"):
+if st.button("Check password"):
     if password_input:
         properties = get_password_properties(password_input)
 
