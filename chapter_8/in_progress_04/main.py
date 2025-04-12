@@ -3,7 +3,6 @@ import streamlit as st
 from backend.hub import Hub
 from frontend.pages import pages
 
-
 if 'hub' not in st.session_state:
   st.session_state.hub = Hub()
 

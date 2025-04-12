@@ -7,5 +7,6 @@ def haiku_editor(hub, user):
     haiku = hub.haiku_service.create_haiku(user.username, haiku_text)
     if haiku:
       st.success('Haiku saved successfully!')
+      st.rerun()
     else:
       st.error('Failed to save haiku')

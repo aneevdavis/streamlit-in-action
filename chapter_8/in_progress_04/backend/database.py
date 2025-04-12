@@ -3,11 +3,16 @@ from sqlalchemy import text
 
 class Database:
   def __init__(self):
-    self.conn = st.connection("haikudb", type="sql")
+    self.conn = st.connection("haikuconn", type="sql")
 
-  def execute_query(self, query, params=(), write=False):
+  def execute_query(self, query, params={}, write=False):
     with self.conn.session as session:
-      result = session.execute(text(query), params)
-      if write:
-        session.commit()
-      return result.fetchall()
+      try:
+        result = session.execute(text(query), params)
+        if write:
+          session.commit()
+        return result.fetchall()
+      except Exception:
+        if write:
+          session.rollback()
+        raise
