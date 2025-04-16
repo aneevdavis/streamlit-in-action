@@ -20,7 +20,8 @@ history = st.session_state.history
 for message in history:
     st.chat_message(message["role"]).markdown(message["content"])
 
-if prompt := st.chat_input("Chat with me!"):
+prompt= st.chat_input("Chat with me!")
+if prompt:
     st.chat_message("human").markdown(prompt)
     response = talk_to_ai(prompt, history)
     history.extend([human_message(prompt), ai_message(response)])
