@@ -8,7 +8,7 @@ conditions = {
     'At least one lowercase letter':
         lambda pw: any(char.islower() for char in pw),
     'At least one special character':
-        lambda pw: any(char in ",.!?@#$%^&*()-_+=|\/:;<>~" for char in pw),
+        lambda pw: any(char in ",.!?@#$%^&*()-_+=|\\/:;<>~" for char in pw),
 }
 
 def get_password_properties(password):
