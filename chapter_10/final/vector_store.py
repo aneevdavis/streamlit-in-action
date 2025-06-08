@@ -5,9 +5,10 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 class VectorStore:
-  def __init__(self, api_keys, index_name):
+  def __init__(self, api_keys, index_name, model_name):
     pc = Pinecone(api_key=api_keys["VECTOR_STORE_API_KEY"])
-    embeddings = OpenAIEmbeddings(api_key=api_keys["OPENAI_API_KEY"])
+    embeddings = OpenAIEmbeddings(
+      api_key=api_keys["OPENAI_API_KEY"], model=model_name)
     index = pc.Index(index_name)
     self.store = PineconeVectorStore(index=index, embedding=embeddings)
 

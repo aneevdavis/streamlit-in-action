@@ -15,7 +15,9 @@ class Bot:
 
   def get_vector_store(self):
     index_name = self.config["VECTOR_STORE_INDEX_NAME"]
-    return VectorStore(api_keys=self.api_keys, index_name=index_name)
+    model_name = self.config["EMBEDDING_MODEL_NAME"]
+    return VectorStore(
+      api_keys=self.api_keys, index_name=index_name, model_name=model_name)
 
   def get_llm(self):
     return ChatOpenAI(
