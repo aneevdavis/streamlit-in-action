@@ -28,4 +28,4 @@ for idx, task in enumerate(task_list):
     task_col, delete_col = st.columns([0.8, 0.2])
     task_col.checkbox(task.name, task.is_done, key=f"task_{idx}")
     if delete_col.button("Delete", key=f"delete_{idx}"):
-        delete_task(idx)
+        pass

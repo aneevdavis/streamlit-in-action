@@ -29,4 +29,3 @@ for idx, task in enumerate(task_list):
     task_col.checkbox(task.name, task.is_done, key=f"task_{idx}")
     if delete_col.button("Delete", key=f"delete_{idx}"):
         delete_task(idx)
-        st.rerun()

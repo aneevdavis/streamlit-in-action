@@ -1,9 +1,7 @@
 import streamlit as st
 from task import Task
 
-if "task_list" not in st.session_state:
-    st.session_state.task_list = []
-task_list = st.session_state.task_list
+task_list = []
 
 def add_task(task_name: str):
     task_list.append(Task(task_name))

@@ -29,10 +29,8 @@ for idx, task in enumerate(task_list):
     label = f"~~{task.name}~~" if task.is_done else task.name
     if task_col.checkbox(label, task.is_done, key=f"task_{idx}"):
         mark_done(task)
-        st.rerun()
     else:
         mark_not_done(task)
-        st.rerun()
     if delete_col.button("Delete", key=f"delete_{idx}"):
         delete_task(idx)
         st.rerun()
