@@ -15,7 +15,7 @@ class Llm:
   def ask(self, user_msg, sys_msg=None):
     messages = self.construct_messages(user_msg, sys_msg)
     completion = self.client.chat.completions.create(
-      model="gpt-4o-mini",
+      model="gpt-5.1",
       messages=messages
     )
     return completion.choices[0].message.content

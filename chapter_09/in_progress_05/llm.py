@@ -16,7 +16,7 @@ class Llm:
           temperature=None, top_p=None):
     messages = self.construct_messages(user_message, sys_message)
 
-    llm_args = {'model': 'gpt-4o-mini', 'messages': messages}
+    llm_args = {'model': 'gpt-5.1', 'messages': messages}
     if temperature:
       llm_args['temperature'] = temperature
     if top_p:

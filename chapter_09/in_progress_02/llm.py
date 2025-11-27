@@ -17,14 +17,14 @@ class Llm:
 
     if schema:
       completion = self.client.beta.chat.completions.parse(
-        model="gpt-4o-mini",
+        model="gpt-5.1",
         messages=messages,
         response_format=schema
       )
       return completion.choices[0].message.parsed
     else:
       completion = self.client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-5.1",
         messages=messages
       )
       return completion.choices[0].message.content
