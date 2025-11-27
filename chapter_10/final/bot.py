@@ -22,7 +22,7 @@ class Bot:
 
   def get_llm(self):
     return ChatOpenAI(
-      model_name="gpt-4o-mini",
+      model_name="gpt-5.1",
       openai_api_key=self.api_keys["OPENAI_API_KEY"],
       max_tokens=2000
     )

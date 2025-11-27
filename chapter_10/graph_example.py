@@ -3,7 +3,7 @@ from langchain_core.messages import AnyMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 from typing import TypedDict
 
-llm = ChatOpenAI(model_name="gpt-4o-mini", openai_api_key="sk-proj-...")
+llm = ChatOpenAI(model_name="gpt-5.1", openai_api_key="sk-proj-...")
 
 class MyGraphState(TypedDict):
   messages: list[AnyMessage]
