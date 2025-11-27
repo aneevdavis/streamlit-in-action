@@ -10,7 +10,7 @@ ai_message = lambda m: {"role": "assistant", "content": m}
 
 def talk_to_ai(question, history):
     return openai.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-5-mini",
         messages=history + [human_message(question)],
     ).choices[0].message.content
 
