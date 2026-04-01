@@ -14,5 +14,4 @@ def set_params():
     if key.startswith('w:'):
       value = st.session_state[key]
       query_params_dict[key] = value
-      st.query_params[key] = value
   st.query_params.from_dict(query_params_dict)
