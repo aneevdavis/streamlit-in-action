@@ -23,7 +23,7 @@ def set_params():
       value = st.session_state[key]
       if value:
         if isinstance(value, list):
-          value = f'L#{','.join(value)}'
+          value = f'L#{",".join(value)}'
         elif isinstance(value, date):
           value = f'D#{value.isoformat()}'
         query_params_dict[key] = value
